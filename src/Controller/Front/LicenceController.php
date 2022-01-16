@@ -18,7 +18,7 @@ class LicenceController extends AbstractController
     }
 
     #[Route("licence/{id}", name: "licence_show")]
-    public function licenceShow($id,LicenceRepository $licenceRepository)
+    public function licenceShow($id, LicenceRepository $licenceRepository)
     {
         $licence= $licenceRepository->find($id);
         

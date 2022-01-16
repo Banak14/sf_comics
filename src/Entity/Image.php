@@ -23,7 +23,9 @@ class Image
     private $title;
 
     #[ORM\ManyToOne(targetEntity: Comics::class, inversedBy: 'images')]
-    private $comics;
+    private $comic;
+
+    
 
     public function getId(): ?int
     {
@@ -66,15 +68,17 @@ class Image
         return $this;
     }
 
-    public function getComics(): ?Comics
+    public function getComic(): ?Comics
     {
-        return $this->comics;
+        return $this->comic;
     }
 
-    public function setComics(?Comics $comics): self
+    public function setComic(?Comics $comic): self
     {
-        $this->comics = $comics;
+        $this->comic = $comic;
 
         return $this;
     }
+
+
 }

@@ -14,6 +14,14 @@
         {% endblock %}
     </head>
     <body>
+        <h1>{{admin}}</h1>
+        {% for glicence in glicences.getAll() %}
+			<h2>{{ glicence.name }}</h2>
+		{% endfor %}
+
+		{% for geditor in geditors.getAll %}
+			<h2>{{ geditor.name }}</h2>
+		{% endfor %}
         {% block body %}{% endblock %}
     </body>
 </html>

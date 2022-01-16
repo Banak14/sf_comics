@@ -3,6 +3,7 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Comics;
+use App\Form\ComicType;
 use App\Repository\ComicsRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -24,7 +25,7 @@ class AdminComicsController extends AbstractController
     }
 
     #[Route("admin/comic/{id}", name: "admin_comic_show")]
-    public function adminShowComic($id,ComicsRepository $comicsRepository)
+    public function adminShowComic($id, ComicsRepository $comicsRepository)
     {
         $comic = $comicsRepository->find($id);
         return $this->render("admin/comic.html.twig",['product' => $comic]);
@@ -44,7 +45,7 @@ class AdminComicsController extends AbstractController
 
         $comic = $comicsRepository->find($id);
 
-        $comicForm = $this->createForm(ComicsType::class,$comic);
+        $comicForm = $this->createForm(ComicType::class,$comic);
 
         $comicForm->handleRequest($request);
 
@@ -60,12 +61,12 @@ class AdminComicsController extends AbstractController
     }
 
     
-    #[Route("admin/create/comic/", name:"admin_comic_create")]
+    #[Route("/admin/create/comic/", name:"admin_comic_create")]
     public function adminComicCreate(Request $request, EntityManagerInterface $entityManagerInterface)
     {
         $comic = new Comics();
 
-        $comicForm = $this->createForm(ProductType::class, $comic);
+        $comicForm = $this->createForm(ComicType::class, $comic);
 
         $comicForm->handleRequest($request);
 

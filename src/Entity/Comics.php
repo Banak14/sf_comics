@@ -21,23 +21,25 @@ class Comics
     #[ORM\Column(type: 'text')]
     private $description;
 
-    #[ORM\Column(type: 'date')]
+    #[ORM\Column(type: 'integer')]
     private $year;
 
-    #[ORM\OneToOne(targetEntity: Licence::class, cascade: ['persist', 'remove'])]
+    #[ORM\ManyToOne(targetEntity: Licence::class, inversedBy: 'comics')]
     private $licence;
 
-    #[ORM\OneToOne(targetEntity: Editor::class, cascade: ['persist', 'remove'])]
+    #[ORM\ManyToOne(targetEntity: Editor::class, inversedBy: 'comics')]
     private $editor;
 
-    #[ORM\OneToOne(targetEntity: Writer::class, cascade: ['persist', 'remove'])]
+    #[ORM\ManyToOne(targetEntity: Writer::class, inversedBy: 'comics')]
     private $writer;
 
-    #[ORM\OneToOne(targetEntity: Designer::class, cascade: ['persist', 'remove'])]
+    #[ORM\ManyToOne(targetEntity: Designer::class, inversedBy: 'comics')]
     private $designer;
 
-    #[ORM\OneToMany(mappedBy: 'comics', targetEntity: Image::class)]
+    #[ORM\OneToMany(mappedBy: 'comic', targetEntity: Image::class)]
     private $images;
+
+    
 
     public function __construct()
     {
@@ -73,12 +75,12 @@ class Comics
         return $this;
     }
 
-    public function getYear(): ?\DateTimeInterface
+    public function getYear(): ?int
     {
         return $this->year;
     }
 
-    public function setYear(\DateTimeInterface $year): self
+    public function setYear(int $year): self
     {
         $this->year = $year;
 
@@ -145,7 +147,7 @@ class Comics
     {
         if (!$this->images->contains($image)) {
             $this->images[] = $image;
-            $image->setComics($this);
+            $image->setComic($this);
         }
 
         return $this;
@@ -155,11 +157,13 @@ class Comics
     {
         if ($this->images->removeElement($image)) {
             // set the owning side to null (unless already changed)
-            if ($image->getComics() === $this) {
-                $image->setComics(null);
+            if ($image->getComic() === $this) {
+                $image->setComic(null);
             }
         }
 
         return $this;
     }
+
+    
 }

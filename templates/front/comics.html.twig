@@ -1,0 +1,15 @@
+{% extends "front/base.html.twig" %}
+
+{% block body %}
+
+    
+	
+	{% for comic in comics %}
+
+		
+		<h2>
+			<a href="{{ path('comic_show', {'id' : comic.id}) }}">{{ comic.title }}</a>
+		</h2>
+	{% endfor %}
+
+{% endblock %}

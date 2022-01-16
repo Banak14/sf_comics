@@ -1,5 +1,10 @@
 twig:
     default_path: '%kernel.project_dir%/templates'
+    globals:
+        front: "Vous êtes sur la partie front"
+        admin: "Vous êtes sur la partie admin"
+        glicences: '@App\Globals\Licences'
+        geditors: '@App\Globals\Editors'
 
 when@test:
     twig:

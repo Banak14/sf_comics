@@ -6,6 +6,7 @@ use App\Entity\Writer;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
 class WriterType extends AbstractType
 {
@@ -14,6 +15,7 @@ class WriterType extends AbstractType
         $builder
             ->add('name')
             ->add('country')
+            ->add('Enregistrer', SubmitType::class)
         ;
     }
 

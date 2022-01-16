@@ -21,7 +21,7 @@ class ComicsController extends AbstractController
     }
 
     #[Route("comic/{id}", name: "comic_show")]
-    public function comicShow($id,ComicsRepository $comicsRepository)
+    public function comicShow($id, ComicsRepository $comicsRepository)
     {
         $comic = $comicsRepository->find($id);
         return $this->render("front/comic.html.twig",['product' => $comic]);

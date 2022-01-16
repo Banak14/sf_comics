@@ -1,0 +1,25 @@
+{% extends "admin/base.html.twig" %}
+
+{% block body %}
+
+    
+
+	{{form_start(comicForm)}}
+
+	{{form_label(comicForm.title, 'Nom')}}
+	{{form_widget(comicForm.title)}}
+
+	{{form_label(comicForm.description, 'Description')}}
+	{{form_widget(comicForm.description)}}
+
+    {{form_label(comicForm.year, 'Année')}}
+	{{form_widget(comicForm.year)}}
+
+	{{form_label(comicForm.media, 'Image')}}
+	{{form_widget(comicForm.media)}}
+
+	{{form_widget(comicForm.Enregistrer)}}
+
+	{{form_end(comicForm)}}
+
+{% endblock %}

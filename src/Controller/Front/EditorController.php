@@ -18,7 +18,7 @@ class EditorController extends AbstractController
     }
 
     #[Route("editor/{id}", name: "editor_show")]
-    public function editorShow($id,EditorRepository $editorRepository)
+    public function editorShow($id, EditorRepository $editorRepository)
     {
         $editor= $editorRepository->find($id);
         

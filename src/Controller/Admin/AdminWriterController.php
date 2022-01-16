@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Controller\Front;
+namespace App\Controller\Admin;
 
 use App\Entity\Writer;
+use App\Form\WriterType;
 use App\Repository\WriterRepository;
-
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -16,12 +16,12 @@ class AdminWriterController extends AbstractController
     public function adminListWriter(WriterRepository $writerRepository)
     {
         $writers = $writerRepository->findAll();
-        return $this->render("front/writers.html.twig",['writers'=>$writers]);
+        return $this->render("admin/writers.html.twig",['writers'=>$writers]);
 
     }
 
-    #[Route("writer/{id}", name: "writer_show")]
-    public function adminShowWriter($id,WriterRepository $writerRepository)
+    #[Route("admin/writer/{id}", name: "admin_writer_show")]
+    public function adminShowWriter($id, WriterRepository $writerRepository)
     {
         $writer= $writerRepository->find($id);
         
@@ -42,7 +42,7 @@ class AdminWriterController extends AbstractController
 
         $writer = $writerRepository->find($id);
 
-        $writerForm = $this->createForm(writerType::class,$writer);
+        $writerForm = $this->createForm(WriterType::class,$writer);
 
         $writerForm->handleRequest($request);
 
@@ -63,7 +63,7 @@ class AdminWriterController extends AbstractController
     {
         $writer = new Writer();
 
-        $writerForm = $this->createForm(ProductType::class, $writer);
+        $writerForm = $this->createForm(WriterType::class, $writer);
 
         $writerForm->handleRequest($request);
 

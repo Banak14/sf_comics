@@ -1,0 +1,15 @@
+{% extends "front/base.html.twig" %}
+
+{% block body %}
+
+    
+	
+	{% for editor in editors %}
+
+		
+		<h2>
+			<a href="{{ path('editor_show', {'id' : editor.id}) }}">{{ editor.name }}</a>
+		</h2>
+	{% endfor %}
+
+{% endblock %}

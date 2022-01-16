@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Controller\Front;
+namespace App\Controller\Admin;
 
 use App\Entity\Editor;
-use App\Repository\EditorRepository;
+use App\Form\EditorType;
 
+use App\Repository\EditorRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -21,7 +22,7 @@ class AdminEditorController extends AbstractController
     }
 
     #[Route("admin/editor/{id}", name: "admin_editor_show")]
-    public function adminShowEditor($id,EditorRepository $editorRepository)
+    public function adminShowEditor($id, EditorRepository $editorRepository)
     {
         $editor= $editorRepository->find($id);
         
@@ -62,7 +63,7 @@ class AdminEditorController extends AbstractController
     {
         $editor = new Editor();
 
-        $editorForm = $this->createForm(ProductType::class, $editor);
+        $editorForm = $this->createForm(EditorType::class, $editor);
 
         $editorForm->handleRequest($request);
 

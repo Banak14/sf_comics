@@ -1,0 +1,22 @@
+{% extends "admin/base.html.twig" %}
+
+{% block body %}
+
+   
+
+	{{form_start(licenceForm)}}
+
+	{{form_label(licenceForm.name, 'Nom')}}
+	{{form_widget(licenceForm.name)}}
+
+	{{form_label(licenceForm.description, 'Description')}}
+	{{form_widget(licenceForm.description)}}
+
+	{{form_label(licenceForm.media, 'image')}}
+	{{form_widget(licenceForm.media)}}
+
+	{{form_widget(licenceForm.Enregistrer)}}
+
+	{{form_end(licenceForm)}}
+
+{% endblock %}licence

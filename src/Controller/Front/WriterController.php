@@ -18,7 +18,7 @@ class WriterController extends AbstractController
     }
 
     #[Route("writer/{id}", name: "writer_show")]
-    public function writerShow($id,WriterRepository $writerRepository)
+    public function writerShow($id, WriterRepository $writerRepository)
     {
         $writer= $writerRepository->find($id);
         
